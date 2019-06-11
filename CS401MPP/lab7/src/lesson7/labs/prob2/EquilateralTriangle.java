@@ -1,23 +1,23 @@
 package lesson7.labs.prob2;
 
 public class EquilateralTriangle implements Polygon {
-	private double length;
+	private double side;
 
-	public EquilateralTriangle(double length) {
-		this.length = length;
+	public EquilateralTriangle(double side) {
+		this.side = side;
 	}
 
-	public double getLength() {
-		return length;
+	public double getSide() {
+		return side;
 	}
 
-	public void setLength(double length) {
-		this.length = length;
+	public void setSide(double side) {
+		this.side = side;
 	}
 
 	@Override
 	public double[] getSides() {
-		double[] d = { length, length, length };
+		double[] d = { side, side, side };
 		return d;
 	}
 }

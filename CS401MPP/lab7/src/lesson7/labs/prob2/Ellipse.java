@@ -1,32 +1,32 @@
 package lesson7.labs.prob2;
 
 public class Ellipse implements ClosedCurve {
-	private double a;
-	private double E;
+	private double semiMajorAxis;
+	private double ellipIntegralAtEccentricity;
 
-	public Ellipse(double a, double E) {
-		this.a = a;
-		this.E = E;
+	public Ellipse(double semiMajorAxis, double ellipIntegralAtEccentricity) {
+		this.semiMajorAxis = semiMajorAxis;
+		this.ellipIntegralAtEccentricity = ellipIntegralAtEccentricity;
 	}
 
-	public double getA() {
-		return a;
+	public double getSemiMajorAxis() {
+		return semiMajorAxis;
 	}
 
-	public void setA(double a) {
-		this.a = a;
+	public void setSemiMajorAxis(double semiMajorAxis) {
+		this.semiMajorAxis = semiMajorAxis;
 	}
 
-	public double getE() {
-		return E;
+	public double getEllipIntegralAtEccentricity() {
+		return ellipIntegralAtEccentricity;
 	}
 
-	public void setE(double e) {
-		E = e;
+	public void setEllipIntegralAtEccentricity(double ellipIntegralAtEccentricity) {
+		this.ellipIntegralAtEccentricity = ellipIntegralAtEccentricity;
 	}
 
 	@Override
 	public double computePerimeter() {
-		return 4 * a * E;
+		return 4 * semiMajorAxis * ellipIntegralAtEccentricity;
 	}
 }
