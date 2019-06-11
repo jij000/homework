@@ -1,6 +1,8 @@
 package day1.prob2;
 
 public class Product {
+	static enum SortMetod {BYPRICE, BYTITLE};
+	
 	final String title;
 	final double price;
 	final int model;
@@ -27,4 +29,6 @@ public class Product {
 	public String toString() {
 		return String.format("\n %s : %s : %s", title, price, model);
 	}
+	
+	
 }
