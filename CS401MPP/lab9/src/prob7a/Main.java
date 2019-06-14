@@ -16,7 +16,11 @@ public class Main {
 		                  new Employee("Donald", "Trump", 100000));
 		
 		//your stream pipeline here
-
+		list.stream()
+			.filter(x->x.salary>1000000)
+			.filter(x->x.lastName.startsWith("N", 1))
+			.map(x->x.firstName+" "+x.lastName)
+			.forEach(System.out::println);
 	}
 
 }
