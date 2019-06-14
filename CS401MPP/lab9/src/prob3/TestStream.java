@@ -1,6 +1,7 @@
 package prob3;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class TestStream {
@@ -11,14 +12,14 @@ public class TestStream {
 				.filter(x -> x.length() == len).count();
 	}
 	public static void main(String[] args) {
-		List<String> words = new ArrayList<String>();
-		words.add("abce");
-		words.add("abcd");
-		words.add("abde");
-		words.add("cd");
-		words.add("abec");
-		words.add("abcde");
-		words.add("acd");
+		List<String> words = new ArrayList<String>(Arrays.asList(
+				"abce",
+				"abcd",
+				"abde"
+				,"cd"
+				,"abec"
+				,"abcde"
+				,"acd"));
 		System.out.println(countWords(words, 'c', 'd', 4));
 	}
 
