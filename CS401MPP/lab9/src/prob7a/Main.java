@@ -1,6 +1,7 @@
 package prob7a;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
 
@@ -16,11 +17,17 @@ public class Main {
 		                  new Employee("Donald", "Trump", 100000));
 		
 		//your stream pipeline here
-		list.stream()
-			.filter(x->x.salary>1000000)
-			.filter(x->x.lastName.startsWith("N", 1))
-			.map(x->x.firstName+" "+x.lastName)
-			.forEach(System.out::println);
+		System.out.println(
+				list.stream()
+					.filter(x -> x.salary>100000)
+					.filter(x -> {
+						char a = x.lastName.charAt(0);
+						return a >= 'N' && a <= 'Z' ? true : false;
+					})
+					.map(x->x.firstName+" "+x.lastName)
+					.sorted()
+					.collect(Collectors.joining(", "))
+		);
 	}
 
 }
