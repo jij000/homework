@@ -9,7 +9,8 @@ public class TestStream {
 		return words.stream()
 				.filter(x -> x.contains(String.valueOf(c)))
 				.filter(x -> !x.contains(String.valueOf(d)))
-				.filter(x -> x.length() == len).count();
+				.filter(x -> x.length() == len)
+				.count();
 	}
 	public static void main(String[] args) {
 		List<String> words = new ArrayList<String>(Arrays.asList(
