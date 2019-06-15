@@ -16,7 +16,9 @@ public class Main {
 		                  new Employee("Alice", "Richards", 101000),
 		                  new Employee("Donald", "Trump", 100000));
 		
-		
+		char[] nameRange = {'N','Z'};
+		String listStr = LambdaLibrary.GET_FULL_NAMES.apply(list, 100000, nameRange);
+		System.out.println(listStr);
 	}
 
 }
