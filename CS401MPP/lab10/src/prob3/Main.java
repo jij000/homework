@@ -27,11 +27,11 @@ public class Main {
 //	}
 	
 	public static <T> boolean contains(List<? extends T> list, T e, 
-			BiPredicate<? super T, ? super T> pred3) {
+			BiPredicate<? super T, ? super T> pred) {
 		for(T acc: list) {
 			if(acc == null && e == null) return true;
 			if(acc == null || e == null) continue;
-			if(pred3.test(acc, e)) return true;
+			if(pred.test(acc, e)) return true;
 		}
 		return false;	
 	}
