@@ -21,31 +21,8 @@ public class FindInList {
 		if (list.size() < 2) {
 			return null;
 		}
-		T min;
-		T secondMin;
-		// initialize
-		if (list.get(0).compareTo(list.get(1)) > 0) {
-			min = list.get(1);
-			secondMin = list.get(0);
-		} else {
-			min = list.get(0);
-			secondMin = list.get(1);
-		}
-		for (T t : list) {
-			if (min.compareTo(t) > 0 && secondMin.compareTo(t) > 0) { // min > t && secondMin > t
-				secondMin = min;
-				min = t;
-			}
-			if (min.compareTo(t) < 0 && secondMin.compareTo(t) > 0) { // min < t && secondMin > t
-				secondMin = t;
-			}
-//			if (min.compareTo(t) < 0 && secondMin.compareTo(t) < 0) { // min < t && secondMin < t
-				// do nothing;
-//			}
-		}
-		return secondMin;
-//		Collections.sort(list);
-//		return list.get(1);
+		Collections.sort(list);
+		return list.get(1);
 	}
 	/**
 	 * @param args
