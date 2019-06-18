@@ -3,6 +3,8 @@
  */
 package prob2;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -40,6 +42,15 @@ public class FindInList {
 		List<String> strList = Arrays.asList("ddd", "aaa", "bbb", "ccc");
 		String str = secondSmallest(strList);
 		System.out.println(str);
+		
+		List<LocalDate> dateList = new ArrayList<LocalDate>();
+		dateList.add(LocalDate.of(2010,1,1));
+		dateList.add(LocalDate.of(2019,1,1));
+		dateList.add(LocalDate.of(2010,2,1));
+		dateList.add(LocalDate.of(2018,5,1));
+						
+		LocalDate strdate = secondSmallest(dateList);
+		System.out.println(strdate);
 	}
 
 }
