@@ -43,7 +43,7 @@ public class FileMessageDisplay implements MessageDisplay {
     	String path = this.getClass().getClassLoader().getResource(".").getFile();
 
     	//create file
-    	File file = new File("./output.txt");
+    	File file = new File(path, fileName);
     	try {
 			if (file.createNewFile()) {
 			    System.out.println("File is created!");
