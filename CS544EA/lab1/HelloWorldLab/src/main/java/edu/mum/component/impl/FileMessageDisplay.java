@@ -14,7 +14,12 @@ import edu.mum.component.MessageOrigin;
 /*
  * Need to declare class...  
  */
-	 
+@Component
+public class FileMessageDisplay implements MessageDisplay {
+	
+	@Autowired
+	private MessageOrigin messageOrigin;
+	
     public void display() {
         if (messageOrigin == null) {
             throw new RuntimeException(
@@ -38,7 +43,7 @@ import edu.mum.component.MessageOrigin;
     	String path = this.getClass().getClassLoader().getResource(".").getFile();
 
     	//create file
-    	
+    	File file = new File("./output.txt");
     	try {
 			if (file.createNewFile()) {
 			    System.out.println("File is created!");
