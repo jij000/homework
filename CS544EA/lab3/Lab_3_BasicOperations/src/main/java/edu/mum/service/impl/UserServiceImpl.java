@@ -11,25 +11,23 @@ import edu.mum.dao.UserDao;
 import edu.mum.domain.User;
 
 @Service
-@Transactional 
+@Transactional
 public class UserServiceImpl implements edu.mum.service.UserService {
-	
- 	@Autowired
-	private UserDao userDao;
 
- 	
-     public void save( User user) {  		
-  		userDao.save(user);
- 	}
-  	
-  	
-	public List<User> findAll() {
-		return (List<User>)userDao.findAll();
-	}
+    @Autowired
+    private UserDao userDao;
 
-	public User findByEmail(String email) {
-		return userDao.findByEmail(email);
-	}
- 
+    public void save(User user) {
+        userDao.save(user);
+    }
+
+    public List<User> findAll() {
+        return (List<User>) userDao.findAll();
+    }
+
+    public User findByEmail(String email) {
+        return userDao.findByEmail(email);
+    }
+
 
 }
