@@ -1,0 +1,1 @@
+mvn jpa-entity-generator:generateAll
