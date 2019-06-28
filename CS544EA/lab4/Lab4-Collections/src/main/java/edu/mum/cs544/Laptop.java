@@ -20,8 +20,4 @@ public class Laptop {
     private String model;
     @ManyToOne
     private Employee employee;
-
-    public Laptop(String model) {
-        this.model = model;
-    }
 }

@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Student {
 	@Id
+//    @GeneratedValue  // TODO why?
 	private long studentId;
 	private String studentName;
 

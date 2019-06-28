@@ -47,6 +47,7 @@ public class App {
 
         //c) Create a Bidirectional ManyToMany association between Student and Course
         //using annotations. Be sure to make studentid values application assigned (not generated)!
+        // TODO why? ManyToMany?
         Course c1 = new Course();
         c1.setCourseName("ccc1");
         Course c2 = new Course();
