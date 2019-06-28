@@ -2,6 +2,7 @@ package edu.mum.cs544;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -10,6 +11,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
+@ToString
 @Entity(name="orders")
 public class Order {
     @Id

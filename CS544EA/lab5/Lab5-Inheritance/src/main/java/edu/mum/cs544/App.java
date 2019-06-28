@@ -69,10 +69,29 @@ public class App {
         orderLine3.setProduct(product2);
         orderLine4.setProduct(product1);
 
-        
+
         // b) Change the application to use the following updated domain:
+        CD cd1 = new CD();
+        cd1.setName("CD");
+        cd1.setDescription("good CD");
+        cd1.setArtist("art111");
+        em.persist(cd1);
 
+        DVD dvd1 = new DVD();
+        dvd1.setName("DVD");
+        dvd1.setDescription("good DVD");
+        dvd1.setGenre("genre111");
+        em.persist(dvd1);
 
+        Book book1 = new Book();
+        book1.setName("Book");
+        book1.setDescription("good Book");
+        book1.setTitle("title111");
+        em.persist(book1);
+
+        orderLine4.setProduct(dvd1);
+
+//        System.out.println(customer);
         em.getTransaction().commit();
         em.close();
     }
