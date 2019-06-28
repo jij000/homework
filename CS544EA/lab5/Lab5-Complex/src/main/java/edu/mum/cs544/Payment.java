@@ -4,12 +4,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @Data
 @NoArgsConstructor
 @ToString
-@Entity
-public class DVD  extends Product {
-    private String genre;
+@Embeddable
+public class Payment {
+    private String payDate;
+    private double amount;
 }
