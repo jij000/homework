@@ -18,9 +18,9 @@ import java.util.List;
 public class Customer {
     @Id
     @GeneratedValue
-    long id;
-    String firstName;
-    String lastName;
+    private long id;
+    private String firstName;
+    private String lastName;
     @OneToMany(mappedBy="customer")
-    List<Order> orderList = new ArrayList<>();
+    private List<Order> orderList = new ArrayList<>();
 }

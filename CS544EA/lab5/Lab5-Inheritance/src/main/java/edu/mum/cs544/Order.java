@@ -16,10 +16,10 @@ import java.util.List;
 public class Order {
     @Id
     @GeneratedValue
-    long orderId;
-    LocalDate date;
+    private long orderId;
+    private LocalDate date;
     @ManyToOne
-    Customer customer;
+    private Customer customer;
     @OneToMany
-    List<OrderLine> orderLineList = new ArrayList<>();
+    private List<OrderLine> orderLineList = new ArrayList<>();
 }

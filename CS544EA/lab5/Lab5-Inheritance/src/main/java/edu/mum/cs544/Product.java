@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class Product {
     @Id
     @GeneratedValue
-    long id;
-    String name;
-    String description;
+    private long id;
+    private String name;
+    private String description;
 }

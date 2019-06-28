@@ -16,8 +16,8 @@ import javax.persistence.ManyToOne;
 public class OrderLine {
     @Id
     @GeneratedValue
-    long orderId;
-    int quantity;
+    private long orderId;
+    private int quantity;
     @ManyToOne
-    Product product;
+    private Product product;
 }
