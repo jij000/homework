@@ -57,10 +57,10 @@ public class App {
 		//using a Map, where studentId is used as the key for the map (in this scenario studentid
 		//needs to be an assigned value, not generated).
 		Student student1 = new Student();
-		student1.setStudentId(1);
+//		student1.setStudentId(1);
 		student1.setStudentName("sss111");
 		Student student2 = new Student();
-		student1.setStudentId(2);
+//		student1.setStudentId(2);
 		student2.setStudentName("sss222");
 		em.persist(student1);
 		em.persist(student2);
