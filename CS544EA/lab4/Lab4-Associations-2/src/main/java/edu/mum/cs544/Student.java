@@ -12,7 +12,7 @@ import java.util.List;
 @Entity
 public class Student {
 	@Id
-//	@GeneratedValue
+	@GeneratedValue
 	private long studentId;
 	private String studentName;
 	@ManyToMany

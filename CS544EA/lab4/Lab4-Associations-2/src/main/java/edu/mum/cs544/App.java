@@ -47,17 +47,16 @@ public class App {
 
         //c) Create a Bidirectional ManyToMany association between Student and Course
         //using annotations. Be sure to make studentid values application assigned (not generated)!
-        // TODO why? ManyToMany?
         Course c1 = new Course();
         c1.setCourseName("ccc1");
         Course c2 = new Course();
         c2.setCourseName("ccc2");
 
         Student s1 = new Student();
-        s1.setStudentId(1);
+//        s1.setStudentId(1);
         s1.setStudentName("sss1");
         Student s2 = new Student();
-        s2.setStudentId(2);
+//        s2.setStudentId(2);
         s2.setStudentName("sss2");
 
         c1.getStudentList().add(s1);
@@ -65,11 +64,15 @@ public class App {
 
         em.persist(c1);
         em.persist(c2);
-
+        // ManyToMany
         s1.getCourseList().add(c1);
         s1.getCourseList().add(c2);
+        s2.getCourseList().add(c1);
+        s2.getCourseList().add(c2);
         em.persist(s1);
         em.persist(s2);
+
+
 
         //d) Create a Unidirectional OneToMany association between Customer and
         //Reservation using annotations.
