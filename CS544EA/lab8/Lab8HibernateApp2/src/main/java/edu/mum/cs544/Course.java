@@ -1,6 +1,11 @@
 package edu.mum.cs544;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Course {
+	@Id
 	private long coursenumber;
 	private String name;
 	private String grade;
