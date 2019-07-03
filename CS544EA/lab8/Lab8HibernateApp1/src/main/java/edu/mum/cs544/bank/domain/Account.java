@@ -1,11 +1,22 @@
 package edu.mum.cs544.bank.domain;
 
-import java.util.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
 
+@NoArgsConstructor
+@Entity
 public class Account {
+    @Id
     private long accountnumber;
+    @OneToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+    @JoinColumn(name="account_id")
     private Collection<AccountEntry> entryList = new ArrayList<AccountEntry>();
+    @OneToOne(cascade =CascadeType.ALL)
     private Customer customer;
 
 
