@@ -21,8 +21,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 //        super.configure(http);
         http.authorizeRequests().antMatchers("/login", "/logout", "/").permitAll()
-                .antMatchers("/**").hasRole("ADMIN,USER")
-                .antMatchers("/cars").hasRole("USER").and()
+                .antMatchers("/cars").hasRole("USER")
+                .antMatchers("/**").hasRole("ADMIN").and()
                 .formLogin().permitAll().and()
                 .logout().permitAll();
     }
@@ -31,7 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 //        super.configure(auth);
         auth.inMemoryAuthentication()
-                .withUser("admin").password("{noop}123").roles("ADMIN").and()
+                .withUser("admin").password("{noop}123").roles("ADMIN","USER").and()
                 .withUser("user").password("{noop}123").roles("USER");
     }
 }

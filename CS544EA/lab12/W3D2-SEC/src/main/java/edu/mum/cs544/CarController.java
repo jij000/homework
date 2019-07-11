@@ -2,6 +2,7 @@ package edu.mum.cs544;
 
 import javax.annotation.Resource;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,6 +34,7 @@ public class CarController {
 	}
 
 	@GetMapping("/cars/add")
+//	@PreAuthorize("hasRole('ADMIN')")
 	public String viewAdd(@ModelAttribute Car car, Model model) {
 		model.addAttribute("msg", "Add");
 		return "carDetail";
@@ -46,12 +48,14 @@ public class CarController {
 	}
 	
 	@PostMapping("/cars/{id}")
+//	@PreAuthorize("hasRole('ADMIN')")
 	public String update(Car car, @PathVariable int id) {
 		carService.update(car); // car.id already set by binding
 		return "redirect:/cars";
 	}
 	
 	@PostMapping(value="/cars/delete")
+//	@PreAuthorize("hasRole('ADMIN')")
 	public String delete(int carId) {
 		carService.delete(carId);
 		return "redirect:/cars";
