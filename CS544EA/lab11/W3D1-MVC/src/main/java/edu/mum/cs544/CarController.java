@@ -15,7 +15,7 @@ public class CarController {
 	@Resource
 	private CarService carService;
 	
-	@GetMapping("/")
+	@GetMapping("/c")
 	public String redirectRoot() {
 		return "redirect:/cars";
 	}
