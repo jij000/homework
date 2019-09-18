@@ -15,7 +15,7 @@ public class QuizServlet extends HttpServlet {
      */
     private static final long serialVersionUID = 1L;
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
@@ -32,22 +32,45 @@ public class QuizServlet extends HttpServlet {
         outHtml += "";
         outHtml += "<body>";
         outHtml += "    <h1>The Number Quiz</h1>";
-        outHtml += "    <p>Your current score is " + request.getSession().getAttribute("score") + ".</p>";
-        outHtml += "    <p>Guess the next number in the sequence.</p>";
-        outHtml += "    <form action=\"CalcPro\" method=\"POST\">";
-        outHtml += "outHtml + = \"<label>Your ansewer: </label><input type=\"number\" id=\"ans\" name=\"ans\" /> ";
-        outHtml += "outHtml + = \"<input type=\"submit\" id=\"submit\" name=\"submit\" value=\"submit\" />";
-        outHtml += "    </form>";
+
+        Quiz quiz = null;
+        if (request.getSession().getAttribute("quiz") == null) {
+            quiz = new Quiz();
+        } else {
+            quiz = (Quiz) request.getSession().getAttribute("quiz");
+        }
+        int qIndex;
+        if (request.getSession().getAttribute("qIndex") != null) {
+            qIndex = (Integer) request.getSession().getAttribute("qIndex");
+            if (qIndex == -1) {
+                quiz = new Quiz(); // reset
+            } else {
+                if (!"".equals(request.getParameter("ans")) && request.getParameter("ans") != null) {
+                    int ans = Integer.valueOf(request.getParameter("ans").toString());
+                    if (ans == Quiz.answers[qIndex]) {
+                        quiz.addScore();
+                    }
+                }
+            }
+        }
+        outHtml += "    <p>Your current score is " + quiz.getScore() + ".</p>";
+        qIndex = quiz.getNextQuestionIndex();
+        if (qIndex == -1) {
+            outHtml += "    <p>You hava completed the Number Quiz, with a score of " + quiz.getScore() + " of " + quiz.questions.length + ".</p>";
+        } else {
+            outHtml += "    <p>Guess the next number in the sequence.</p>";
+            outHtml += quiz.questions[qIndex];
+            outHtml += "    <form action=\"Quiz\" method=\"GET\">";
+            outHtml += "    <label>Your ansewer: </label><input type=\"number\" id=\"ans\" name=\"ans\" /> ";
+            outHtml += "    <input type=\"submit\" id=\"submit\" name=\"submit\" value=\"submit\" />";
+            outHtml += "    </form>";
+        }
         outHtml += "</body>";
         outHtml += "";
         outHtml += "</html>";
-        request.getSession().setAttribute("question", Quiz.);
-        if (!"".equals(request.getParameter("num1")) && request.getParameter("num1")!= null) {
-            Long num1 = Long.parseLong(request.getParameter("num1").toString());
-            Long num2 = Long.parseLong(request.getParameter("num2").toString());
-            Long sum = num1 + num2;
-            out.println(num1.toString() + " + " + num2.toString() + " = " + sum.toString());
-        }
+
+        request.getSession().setAttribute("quiz", quiz);
+        request.getSession().setAttribute("qIndex", qIndex);
         out.println(outHtml);
     }
 }
