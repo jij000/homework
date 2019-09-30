@@ -7,7 +7,7 @@
 </head>
 
 <body>
-    <form action="calc2" method="get">
+    <form action="Calculator" method="post">
         <input type="text" name="add1" size="2" value="" />+
         <input type="text" name="add2" value="" size="2" />=
         <input type="text" name="sum" value="" size="2" readonly /><br />
