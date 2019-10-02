@@ -8,60 +8,64 @@ public class Calculator implements Serializable {
      */
     private static final long serialVersionUID = -6257027669788890853L;
     
-    Double add1;
-    Double add2;
-    Double mult1;
-    Double mult2;
-    Double sum;
-    Double product;
+    String add1;
+    String add2;
+    String mult1;
+    String mult2;
+    String sum;
+    String product;
+    public void calSum() {
+        this.sum = String.valueOf(Double.valueOf(this.add1) + Double.valueOf(this.add2));
+    }
+    public void calProduct() {
+        this.product = String.valueOf(Double.valueOf(this.mult1) * Double.valueOf(this.mult2));
+    }
 
-    public Double getAdd1() {
+    public String getAdd1() {
         return add1;
     }
 
-    public void setAdd1(Double add1) {
+    public void setAdd1(String add1) {
         this.add1 = add1;
     }
 
-    public Double getAdd2() {
+    public String getAdd2() {
         return add2;
     }
 
-    public void setAdd2(Double add2) {
+    public void setAdd2(String add2) {
         this.add2 = add2;
     }
 
-    public Double getMult1() {
+    public String getMult1() {
         return mult1;
     }
 
-    public void setMult1(Double mult1) {
+    public void setMult1(String mult1) {
         this.mult1 = mult1;
     }
 
-    public Double getMult2() {
+    public String getMult2() {
         return mult2;
     }
 
-    public void setMult2(Double mult2) {
+    public void setMult2(String mult2) {
         this.mult2 = mult2;
     }
 
-    public Double getSum() {
+    public String getSum() {
         return sum;
     }
 
-    public void setSum(Double sum) {
+    public void setSum(String sum) {
         this.sum = sum;
     }
 
-    public Double getProduct() {
+    public String getProduct() {
         return product;
     }
 
-    public void setProduct(Double product) {
+    public void setProduct(String product) {
         this.product = product;
     }
-
-    
 }
