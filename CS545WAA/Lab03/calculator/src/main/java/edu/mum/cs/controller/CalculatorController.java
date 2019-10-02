@@ -2,8 +2,6 @@ package edu.mum.cs.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,7 +30,6 @@ public class CalculatorController {
     @RequestMapping(value = {"/CalculatorPost"}, method = RequestMethod.POST)
     public String CalculatorPost(Calculator calculator, Model model) {
 
-        // request.setAttribute("calculator", calculator);
         // Check for valid inputs....
         List<String> errors = calculatorValidator.validate(calculator);
         if (!errors.isEmpty()) {
