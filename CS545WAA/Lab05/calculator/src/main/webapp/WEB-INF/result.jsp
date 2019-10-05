@@ -8,6 +8,7 @@
 </head>
 
 <body>
+<p><c:out value="${msg}"></c:out></p>
 <c:forEach var="err" items="${errors}">
     <p><c:out value="${err}"></c:out></p>
 </c:forEach>

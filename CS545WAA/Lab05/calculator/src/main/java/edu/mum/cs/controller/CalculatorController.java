@@ -18,7 +18,7 @@ public class CalculatorController {
     @Autowired
     Validator calculatorValidator;
 
-    @RequestMapping(value = {"/index"})
+    @RequestMapping(value = {"/", "/index"})
     public String index() {
         return "index";
     }
@@ -28,8 +28,8 @@ public class CalculatorController {
         return "calculator";
     }
     @RequestMapping(value = {"/Calculator1"})
-    public String inputCalculator1() {
-        return "calculator";
+    public String inputCalculator1(RedirectAttributes redirectAttributes) {
+        return "result";
     }
     @RequestMapping(value = {"/CalculatorPost"}, method = RequestMethod.POST)
     public String CalculatorPost(Calculator calculator, Model model, RedirectAttributes redirectAttributes) {
@@ -42,6 +42,7 @@ public class CalculatorController {
         }
         calculator.calSum();
         calculator.calProduct();
+        redirectAttributes.addFlashAttribute("msg", "Greeting!");
         redirectAttributes.addFlashAttribute(calculator);
         // Another "view" of how to use PrintWriter
         return "redirect:/Calculator1";
