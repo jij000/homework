@@ -1,21 +1,19 @@
 package com.students.domain;
 
-import java.util.Date;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
-
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.format.annotation.DateTimeFormat;
+import java.util.Date;
 
 
 public class Student {
-	
+	@NotNull
 	private Integer id;
-	@NotEmpty(message = "String.empty")
+	@NotEmpty
 	@Size(min = 4, max = 50, message = "{Size.name.validation}")
  	private String firstName = null;
 	@NotEmpty
@@ -26,7 +24,7 @@ public class Student {
  	private String gender = null;
 	@DateTimeFormat(pattern = "MM-dd-yyyy")
     private Date birthday;
- 
+	@Valid
 	private Phone phone;
 
   	public Integer getId() {

@@ -21,6 +21,16 @@
         <fieldset>
             <legend>Register a new student</legend>
             <div class="form-group">
+                <label class="control-label col-lg-2" for="id">
+                    First Name
+                </label>
+                <div class="col-lg-10">
+                    <form:input path="id" id="id"
+                                class="form:input-large"/>
+                    <form:errors path="id" cssClass="text-danger"></form:errors>
+                </div>
+            </div>
+            <div class="form-group">
                 <label class="control-label col-lg-2" for="firstName">
                     First Name
                 </label>
@@ -53,15 +63,20 @@
             <div class="form-group">
                 <label class="control-label col-lg-2" for="gender">Gender</label>
                 <div class="col-lg-10">
-                    <form:input path="gender" id="gender" class="form:input-large"/>
+                    <form:select path="gender" id="gender" class="form:input-large">
+                        <form:option value="M">Male</form:option>
+                        <form:option value="F">Female</form:option>
+                    </form:select>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="control-label col-lg-2" for="phone">Phone</label>
+                <label class="control-label col-lg-2" for="area">Phone</label>
                 <div class="col-lg-10">
-                    <form:input path="phone" id="phone"
-                                class="form:input-large"/>
+                    <form:input path="phone.area" id="area" class="form:input-large"/>
+                    <form:input path="phone.prefix" id="prefix" class="form:input-large"/>
+                    <form:input path="phone.number" id="number" class="form:input-large"/>
+                    <form:errors path="phone" cssClass="text-danger"></form:errors>
                 </div>
             </div>
             <div class="form-group">
