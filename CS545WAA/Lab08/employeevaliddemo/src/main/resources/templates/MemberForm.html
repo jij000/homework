@@ -1,45 +1,48 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE HTML>
-<html>
+<html xmlns:th="http://www.thymeleaf.org/">
 <head>
 <title>Add Employee Form</title>
-<link rel="stylesheet" type="text/css" href="<c:url value="/css/main.css"/>">
+	<link href="css/main.css" type="text/css" rel="stylesheet">
+	<link rel="stylesheet" th:href="@{/css/main.css}" href="../css/main.css" />
 </head>
 <body>
 
 	<div id="global">
-		<form:form modelAttribute="member">
+		<form action="#" method="post" th:action="@{/member_input}" th:object="${member}" >
 			<fieldset>
 				<legend>Add an employee</legend>
 				<p>
-					<form:errors path="*" cssStyle="color : red;" />
+					<ul th:if="${#fields.hasErrors('all')}">
+						<li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
+					</ul>
 				</p>
 				<p>
 					<label for="firstName">First Name: </label>
-					<form:input path="firstName" />
+					<input type="text" id="firstName" th:field="*{firstName}" />
 					<div style="text-align: center;">
-						<form:errors path="firstName" cssStyle="color : red;" />
+						<li th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" th:errorclass="fieldError">Incorrect date</li>
 					</div>
 				</p>
 				<p>
 					<label for="lastName">Last Name: </label>
-					<form:input path="lastName" />
+					<input type="text" id="lastName" th:field="*{lastName}" />
 					<div style="text-align: center;">
-						<form:errors path="lastName" cssStyle="color : red;" />
+						<li th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" th:errorclass="fieldError">Incorrect date</li>
 					</div>
 				</p>
 
 				<p>
 					<label for="memberNumber">Member Number: </label>
-					<form:input path="memberNumber" id="memberNumber" />
-					<form:errors path="memberNumber" cssStyle="color : red;" />
+					<input type="text" id="memberNumber" th:field="*{memberNumber}" />
+					<div style="text-align: center;">
+						<li th:if="${#fields.hasErrors('memberNumber')}" th:errors="*{memberNumber}" th:errorclass="fieldError">Incorrect date</li>
+					</div>
 				</p>
 				<p>
 					<label for="age">Age: </label>
-					<form:input path="age" id="age" />
+					<input type="text" id="age" th:field="*{age}" />
 					<div style="text-align: center;">
-						<form:errors path="age" cssStyle="color : red;" />
+						<li th:if="${#fields.hasErrors('age')}" th:errors="*{age}" th:errorclass="fieldError">Incorrect date</li>
 					</div>
 				</p>
 				<p id="buttons">
@@ -47,7 +50,7 @@
 					<input id="submit" type="submit" tabindex="5" value="Add Member">
 				</p>
 			</fieldset>
-		</form:form>
+		</form>
 	</div>
 </body>
 </html>
