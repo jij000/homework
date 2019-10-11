@@ -1,4 +1,4 @@
-package edu.mum.cs.domain;
+package edu.mum.cs.employeevaliddemo.domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;

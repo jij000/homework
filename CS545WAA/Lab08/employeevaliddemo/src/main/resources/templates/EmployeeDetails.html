@@ -1,18 +1,18 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE HTML>
-<html>
+<html xmlns:th="http://www.thymeleaf.org/">
 <head>
 <title>Save Employee</title>
-<link rel="stylesheet" type="text/css" href="<c:url value="/css/main.css"/>">
+    <link href="css/main.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/main.css}" href="../css/main.css" />
 </head>
 <body>
 <div id="global">
     <h4>The employee details have been saved.</h4>
     <p>
         <h5>Details:</h5>
-        First Name: ${employee.firstName}<br/>
-        Last Name: ${employee.lastName}<br/>
-        Date of birth: ${employee.birthDate}
+        First Name:<span th:text="${employee.firstName}"></span><br/>
+        Last Name: <span th:text="${employee.lastName}"></span><br/>
+        Date of birth: <span th:text="${employee.birthDate}"></span>
     </p>
 </div>
 </body>

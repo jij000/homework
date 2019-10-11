@@ -3,76 +3,78 @@
 
 <head>
 	<title>Add Employee Form</title>
-	<link rel="stylesheet" type="text/css" th:href="/css/main.css" />
+	<link href="css/main.css" type="text/css" rel="stylesheet">
+	<link rel="stylesheet" th:href="@{/css/main.css}" href="../css/main.css" />
 </head>
 
 <body>
 	<div id="global">
-		<form modelAttribute="employee" action="employee_save" method="post">
+		<form action="#" method="post" th:action="@{/employee_save}" th:object="${employee}" >
 			<fieldset>
-				<legend>Add an employee</legend>
-				<p>
-					<!-- <errors name="*" cssStyle="color : red;" /> -->
-				</p>
+				<legend> Add an employee </legend>
+				<ul th:if="${#fields.hasErrors('all')}">
+					<li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
+				</ul>
 				<p>
 					<label for="id">ID: </label>
-					<input name="id" id="id" th:value="${id}"/>
+					<input type="text" id="id" th:field="*{id}" />
 					<div style="text-align: center;">
-						<!-- <errors name="id" cssStyle="color : red;" /> -->
+						<li th:if="${#fields.hasErrors('id')}" th:errors="*{id}" th:errorclass="fieldError">Incorrect date</li>
 					</div>
 				</p>
 				<p>
 					<label for="firstName">First Name: </label>
-					<input name="firstName" id ="firstName" th:value="${firstName}" />
+					<input type="text" id ="firstName" th:field="*{firstName}" />
 					<div style="text-align: center;">
-						<!-- <errors name="firstName" cssStyle="color : red;" /> -->
+						<li th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" th:errorclass="fieldError">Incorrect date</li>
 					</div>
 				</p>
 				<p>
 					<label for="lastName">Last Name: </label>
-					<input name="lastName" id ="lastName" th:value="${lastName}" />
+					<input type="text" id ="lastName" th:field="*{lastName}" />
 					<div style="text-align: center;">
-						<!-- <errors name="lastName" cssStyle="color : red;" /> -->
+						<li th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" th:errorclass="fieldError">Incorrect date</li>
 					</div>
 				</p>
-
 				<p>
 					<label for="birthDate">Date Of Birth: </label>
-					<input name="birthDate" id="birthDate" />
-					<!-- <errors name="birthDate" cssStyle="color : red;" /> -->
+					<input type="text" id ="birthDate" th:field="*{birthDate}" />
+					<div style="text-align: center;">
+						<li th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}" th:errorclass="fieldError">Incorrect date</li>
+					</div>
 				</p>
 				<p>
 					<label for="salaryLevel">Salary: </label>
-					<input name="salaryLevel" id="salaryLevel" />
+					<input type="text" id="salaryLevel" th:field="*{salaryLevel}" />
 					<div style="text-align: center;">
-						<!-- <errors name="salaryLevel" cssStyle="color : red;" /> -->
+						<li th:if="${#fields.hasErrors('salaryLevel')}" th:errors="*{salaryLevel}" th:errorclass="fieldError">Incorrect date</li>
 					</div>
 				</p>
 				<h4>Address:</h4>
 				<p>
 					<label for="street">Street: </label>
-					<input name="address.street" id="street" />
+					<input type="text" id="street"	th:field="*{address.street}" />
 					<div style="text-align: center;">
-						<errors name="address.street" cssStyle="color : red;" />
+						<li th:if="${#fields.hasErrors('address.street')}" th:errors="*{address.street}" th:errorclass="fieldError">Incorrect date</li>
 					</div>
 				</p>
 				<p>
 					<label for="state">State: </label>
-					<input name="address.state" id="state" />
+					<input type="text" id="state" th:field="*{address.state}" />
 					<div style="text-align: center;">
-						<errors name="address.state" cssStyle="color : red; " />
+						<li th:if="${#fields.hasErrors('address.state')}" th:errors="*{address.state}" th:errorclass="fieldError">Incorrect date</li>
 					</div>
 				</p>
 				<p>
 					<label for="zipCode">Zip: </label>
-					<input name="address.zipCode" id="zipCode" />
+					<input type="text"	id="zipCode" th:field="*{address.zipCode}" />
 					<div style="text-align: center;">
-						<errors name="address.zipCode" cssStyle="color : red; " />
+						<li th:if="${#fields.hasErrors('address.zipCode')}" th:errors="*{address.zipCode}" th:errorclass="fieldError">Incorrect date</li>
 					</div>
 				</p>
 				<p id="buttons">
-					<input id="reset" type="reset" tabindex="4">
-					<input id="submit" type="submit" tabindex="5" value="Add Employee">
+					<input id="reset" type="reset" tabindex="4" name="reset" />
+					<input id="submit" type="submit" tabindex="5" value="Add Employee" name = "submit" />
 				</p>
 			</fieldset>
 			</form>

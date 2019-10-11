@@ -1,4 +1,4 @@
-package edu.mum.cs.domain;
+package edu.mum.cs.employeevaliddemo.domain;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;

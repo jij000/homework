@@ -1,4 +1,4 @@
-package edu.mum.cs.controller;
+package edu.mum.cs.employeevaliddemo.controller;
 
 import javax.validation.Valid;
 
@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import edu.mum.cs.domain.Employee;
-
+import edu.mum.cs.employeevaliddemo.domain.Employee;
 
 @Controller
 public class EmployeeController {
@@ -23,9 +22,8 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/employee_save")
-	public String saveEmployee(@Valid Employee emp, BindingResult bindingResult,
-			Model model) {
-		
+	public String saveEmployee(@Valid Employee emp, BindingResult bindingResult, Model model) {
+
 		if (bindingResult.hasErrors()) {
 			return "EmployeeForm";
 		}

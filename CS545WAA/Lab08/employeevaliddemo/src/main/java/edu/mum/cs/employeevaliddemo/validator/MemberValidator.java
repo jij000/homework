@@ -1,11 +1,12 @@
-package edu.mum.cs.validator;
+package edu.mum.cs.employeevaliddemo.validator;
 
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import edu.mum.cs.domain.Member;
+import edu.mum.cs.employeevaliddemo.domain.Member;
+
 
 @Component
 public class MemberValidator implements Validator {
