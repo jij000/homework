@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Add a book</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/ajax.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/rest.css}"></link>
+    <title>Restful Employee</title>
+</head>
+
+<body>
+    <h1>Add Employee</h1>
+
+    <form id="employeeForm" method="post">
+        <table cellpadding="0" cellspacing="0" border="1" class="GridOne">
+            <tr>
+                <td>First Name</td>
+                <td><input type="text" name="firstName" id="firstName" value=""></td>
+            </tr>
+            <tr>
+                <td>Last Name</td>
+                <td><input type="text" name="lastName" id="lastName" value=""></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="text" name="email" id="email" value=""></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="button" value="Ajax Submit" id="ajaxBtn"></td>
+            </tr>
+        </table>
+    </form>
+    <!-- Success - or Validation errors -->
+    <div id="errors" style="display:none">
+    </div>
+
+    <div id="formInput" style="display:none"> </div>
+</body>
+
+</html>
