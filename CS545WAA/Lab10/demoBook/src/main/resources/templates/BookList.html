@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Employee Form</title>
+	<link href="css/main.css" type="text/css" rel="stylesheet">
+	<link rel="stylesheet" th:href="@{/css/main.css}" href="../css/main.css" />
+</head>
+
+<body>
+	<h1>Book list</h1>
+
+	<table class="table table-bordered">
+		<tr>
+			<th>id</th>
+			<th>NAME</th>
+			<th>Category</th>
+			<!-- <th>review count</th> -->
+		</tr>
+		<tr th:each="book1 : ${books}">
+			<td><a th:href="@{/getBookDetail/{bookid}(bookid=${book1.id})}" th:text="${book1.id}"></a></td>
+			<td th:text="${book1.name}">Onions</td>
+			<td th:text="${book1.category}">2.41</td>
+		</tr>
+	</table>
+
+	<br />
+	<br />
+	<div id="global">
+		<form action="#" th:action="@{/addBook}" th:object="${book}" method="post">
+			<fieldset>
+				<legend><span>Add a Employee</span></legend>
+				<ul th:if="${#fields.hasErrors('*')}">
+					<li th:each="err : ${#fields.errors('*')}" th:text="${err}" >Input is incorrect</li>
+				</ul>
+				<p>
+					<label for="id"><span>ID: </span></label> 
+					<input type="text" id="id" th:field="*{id}" />
+					<p th:if="${#fields.hasErrors('id')}" th:errors="*{id}" th:errorclass="fieldError">Incorrect date</p>
+				</p>
+				<p>
+					<label for="name"><span>Book Name: </span></label> 
+					<input type="text" id="name" th:field="*{name}" />
+					<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:errorclass="fieldError">Incorrect date</p>
+				</p>
+				<p>
+					<label for="category"><span>Category: </span></label> 
+					<select th:field="*{category}">
+						<option th:value="'M'" th:text="Male"></option>
+						<option th:value="'F'" th:text="Female"></option>
+					</select>
+					
+					<!-- <input type="select" id = categories th:field="*{categories}" /> -->
+					<p th:if="${#fields.hasErrors('category')}" th:errors="*{category}" th:errorclass="fieldError">Incorrect date</p>
+				</p>
+	
+				<p id="buttons">
+					<input id="reset" type="reset" value="reset" tabindex="4"> 
+					<input id="submit" type="submit" tabindex="5" value="Add Employee">
+				</p>
+			</fieldset>
+		</form>
+	</div>
+
+</body>
+</html>
