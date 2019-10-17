@@ -25,7 +25,7 @@ $( document ).ready(function(){
         event.preventDefault();
 
         var data = JSON.stringify($("#reviewForm").serializeFormJSON());
-        // var data = JSON.stringify({id:$('#id').val(),content:$('#content').text()});
+        // var data = JSON.stringify({id:$('#id').val(),content:$('#content').val()});
 
         $.ajax({
             type: 'POST',
