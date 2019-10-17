@@ -30,7 +30,7 @@
 	<div id="global">
 		<form action="#" th:action="@{/addBook}" th:object="${book}" method="post">
 			<fieldset>
-				<legend><span>Add a Employee</span></legend>
+				<legend><span>Add a Book</span></legend>
 				<ul th:if="${#fields.hasErrors('*')}">
 					<li th:each="err : ${#fields.errors('*')}" th:text="${err}" >Input is incorrect</li>
 				</ul>
@@ -57,7 +57,7 @@
 	
 				<p id="buttons">
 					<input id="reset" type="reset" value="reset" tabindex="4"> 
-					<input id="submit" type="submit" tabindex="5" value="Add Employee">
+					<input id="submit" type="submit" tabindex="5" value="Add Book">
 				</p>
 			</fieldset>
 		</form>
