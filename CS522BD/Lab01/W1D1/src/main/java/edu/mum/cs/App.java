@@ -16,8 +16,8 @@ public final class App {
      */
     public static void main(String[] args) {
         // System.out.println("Hello World!");
-        List<Pair<String>> pairList = WordCount.WordCountFromFile("Z:\\homework\\CS522BD\\Lab01\\w1d1\\testDataForW1D1.txt");
-        Collections.sort(pairList);
+        List<Pair<String>> pairList = WordCount.WordCountFromFile("testDataForW1D1.txt");
+        Collections.sort(pairList, new Pair<String>());
         for (Pair<String> pair : pairList) {
             System.out.println(pair);
         }

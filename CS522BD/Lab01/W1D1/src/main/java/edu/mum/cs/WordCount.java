@@ -11,9 +11,8 @@ import java.util.regex.Pattern;
 class WordCount {
     
     static Boolean isWord(String str) {
-        if (Pattern.matches("[A-Za-z].*", str)) {
+        if (Pattern.matches("[A-Za-z]+", str) || Pattern.matches("[A-Za-z]+\\.", str) || Pattern.matches("[A-Za-z]+,", str)) {
             return true;
-
         } else {
             return false;
         }
@@ -38,7 +37,9 @@ class WordCount {
                     String[] words = lineTxt.split(" ");
                     for(String str : words) {
                         if (isWord(str)) {
-                            Pair<String> pair = new Pair<>(str.toLowerCase(), 1L);
+                            str = str.replaceAll(",", "");
+                            str = str.replaceAll("\\.", "");
+                            Pair<String> pair = new Pair<String>(str.toLowerCase(), 1L);
                             pairList.add(pair);
                         }
                     }
