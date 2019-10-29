@@ -1,5 +1,7 @@
 package edu.mum.cs;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -13,11 +15,16 @@ import lombok.Setter;
 @AllArgsConstructor
 class GroupByPair<T, V> {
     T key;
-    List<V> value;
+    List<V> valueList = new ArrayList<>();
+
+    public GroupByPair<T, V> addValueList(V value) {
+        this.valueList.add(value);
+        return this;
+    }
 
     @Override
     public String toString() {
-        return "(" + key.toString() + ", " + value.stream().map(x -> String.valueOf(x)) + ")";
+        return "(" + key.toString() + ", " + Arrays.toString(valueList.toArray()) + ")";
     }
 
 }
