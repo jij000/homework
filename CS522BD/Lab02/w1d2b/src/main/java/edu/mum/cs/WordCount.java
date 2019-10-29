@@ -16,12 +16,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 class WordCount<T, V> {
-    List<Pair<T, V>> mapperList;
-    List<GroupByPair<T, V>> reducerList;
+    List<List<Pair<T, V>>> mapperList;
+    List<List<GroupByPair<T, V>>> reducerList;
+    int m;  // number of mappaer
+    int r;  // number of reducer
 
     static Boolean isWord(String str) {
         if (Pattern.matches("[A-Za-z]+", str) || Pattern.matches("[A-Za-z]+\\.", str)
-        || Pattern.matches("[A-Za-z]+,", str) || Pattern.matches("\"[A-Za-z]+\"", str)) {
+                || Pattern.matches("[A-Za-z]+,", str) || Pattern.matches("\"[A-Za-z]+\"", str)) {
             return true;
         } else {
             return false;
@@ -29,7 +31,7 @@ class WordCount<T, V> {
     }
 
     public int getPartition(String key){
-		return (int) key.hashCode() % reducerList.size();
+		return (int) key.hashCode() % r;
 	}
 
     static List<Pair<String, Long>> WordCountFromFile(String filePath) {

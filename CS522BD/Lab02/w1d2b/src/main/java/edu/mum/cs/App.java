@@ -17,27 +17,27 @@ public final class App {
      */
     public static void main(String[] args) {
         // System.out.println("Hello World!");
-        WordCount<String, Long> wordCount = new WordCount();
-        List<Pair<String, Long>> pairList = WordCount.WordCountFromFile("testDataForW1D1.txt");
-        List<GroupByPair<String, Long>> groupByPairList = new ArrayList<>();
+        WordCount<String, Long> wordCount = new WordCount<>();
+        wordCount.setMapperList(WordCount.WordCountFromFile("testDataForW1D1.txt"));
+        wordCount.setReducerList(new ArrayList<>());
         GroupByPair<String, Long> g = null;
-        Collections.sort(pairList, new Pair<String, Long>());
+        Collections.sort(wordCount.getMapperList(), new Pair<String, Long>());
         System.out.println("Mapper Output");
-        for (Pair<String, Long> pair : pairList) {
+        for (Pair<String, Long> pair : wordCount.getMapperList()) {
             System.out.println(pair);
-            if (groupByPairList.size() == 0 || !groupByPairList.get(groupByPairList.size()-1).getKey().equals(pair.getKey())) {
+            if (wordCount.getReducerList().size() == 0 || !wordCount.getReducerList().get(wordCount.getReducerList().size()-1).getKey().equals(pair.getKey())) {
                 g = new GroupByPair<>();
                 g.setKey(pair.getKey());
-                groupByPairList.add(g);
+                wordCount.getReducerList().add(g);
             }
             g.addValueList(pair.getWordCounts());
         }
         System.out.println("Reducer Input");
-        for (GroupByPair<String, Long> groupByPair : groupByPairList) {
+        for (GroupByPair<String, Long> groupByPair : wordCount.getReducerList()) {
             System.out.println(groupByPair);
         }
         System.out.println("Reducer Output");
-        for (GroupByPair<String, Long> groupByPair : groupByPairList) {
+        for (GroupByPair<String, Long> groupByPair : wordCount.getReducerList()) {
             Long sum = groupByPair.getValueList().stream().reduce(0L, (a, b) -> a + b);
             Pair<String, Long> pair = new Pair<String, Long>(groupByPair.getKey(), sum);
             System.out.println(pair);
