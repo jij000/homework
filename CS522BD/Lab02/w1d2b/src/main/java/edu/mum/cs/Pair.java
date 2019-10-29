@@ -11,9 +11,9 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-class Pair<T> implements Comparator<Pair<T>>{
+class Pair<T, V> implements Comparator<Pair<T, V>>{
     T key;
-    Long wordCounts;
+    V wordCounts;
 
     @Override
     public String toString() {
@@ -21,7 +21,7 @@ class Pair<T> implements Comparator<Pair<T>>{
     }
 
     @Override
-    public int compare(Pair<T> o1, Pair<T> o2) {
+    public int compare(Pair<T, V> o1, Pair<T, V> o2) {
         return String.valueOf(o1.getKey()).compareTo(String.valueOf(o2.getKey()));
     }
 }
