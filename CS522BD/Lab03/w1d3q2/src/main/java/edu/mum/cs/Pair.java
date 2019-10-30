@@ -17,7 +17,7 @@ class Pair<T, V> implements Comparator<Pair<T, V>>{
 
     @Override
     public String toString() {
-        return "(" + key.toString() + ", " + String.valueOf(wordCounts) + ")";
+        return "< " + key.toString() + ", " + String.valueOf(wordCounts) + " >";
     }
 
     @Override

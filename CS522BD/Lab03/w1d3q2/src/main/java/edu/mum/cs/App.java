@@ -73,14 +73,20 @@ public final class App {
             }
         }
         // Reducer Output
-        // for (Integer j = 0; j < wordCount.getR(); j++) { // init
-        //     System.out.println("Reducer " + String.valueOf(j) + " Output");
-        //     for (GroupByPair<String, PairValue> groupByPair : wordCount.getReducerList().get(j)) {
-        //         PairValue sum = groupByPair.getValueList().stream().reduce(0L, (a, b) -> a + b);
-        //         Pair<String, PairValue> pair = new Pair<String, PairValue>(groupByPair.getKey(), sum);
-        //         System.out.println(pair);
-        //     }
-        // }
-        
+        for (Integer j = 0; j < wordCount.getR(); j++) { // init
+            System.out.println("Reducer " + String.valueOf(j) + " Output");
+            for (GroupByPair<String, PairValue> groupByPair : wordCount.getReducerList().get(j)) {
+                Double sum = 0.0;
+                Double cnt = 0.0;
+                for (PairValue pairValue : groupByPair.getValueList()) {
+                    sum += pairValue.getSum();
+                    cnt += pairValue.getCnt();
+                }
+                Double ave = sum / cnt;
+                Pair<String, Double> pair = new Pair<String, Double>(groupByPair.getKey(), ave);
+                System.out.println(pair);
+            }
+        }
+
     }
 }
