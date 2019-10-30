@@ -38,9 +38,9 @@ class WordCount<T, V> {
 		return (int) key.hashCode() % r;
 	}
 
-    static Map<String, Pair<String, Long>> WordCountFromFile(String filePath) {
+    static Map<String, Pair<String, PairValue>> WordCountFromFile(String filePath) {
 
-        Map<String, Pair<String, Long>> pairMap = new TreeMap<>();
+        Map<String, Pair<String, PairValue>> pairMap = new TreeMap<>();
 
         try
         {
@@ -61,13 +61,12 @@ class WordCount<T, V> {
                             str = str.replaceAll("\\.", "");
                             str = str.replaceAll("\"", "");
                             str = str.replaceAll("\'", "");
-                            Pair<String, Long> pair = new Pair<String, Long>(str.toLowerCase(), 1L);
-                            if (pairMap.get(str.toLowerCase()) == null) {
-                                pairMap.put(str.toLowerCase(), pair);
+                            Pair<String, PairValue> pair = new Pair<String, PairValue>(str.toLowerCase().substring(0, 1), new PairValue(str.length(), 1L));
+                            if (pairMap.get(str.toLowerCase().substring(0, 1)) == null) {
+                                pairMap.put(str.toLowerCase().substring(0, 1), pair);
                             } else {
-                                pairMap.get(str.toLowerCase())
-                                        .setWordCounts(pairMap.get(str.toLowerCase()).getWordCounts() + 1);
-                                ;
+                                pairMap.get(str.toLowerCase().substring(0, 1)).getWordCounts().setSum(pairMap.get(str.toLowerCase().substring(0, 1)).getWordCounts().getSum() + str.length());
+                                pairMap.get(str.toLowerCase().substring(0, 1)).getWordCounts().setCnt(pairMap.get(str.toLowerCase().substring(0, 1)).getWordCounts().getCnt() + 1);
                             }
                         }
                     }
