@@ -16,14 +16,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 class WordCount<T, V> {
-    List<List<Pair<T, V>>> mapperList;
-    List<List<GroupByPair<T, V>>> reducerList;
-    int m;  // number of mappaer
-    int r;  // number of reducer
+    List<List<Pair<T, V>>> mapperList = new ArrayList<>();
+    List<List<GroupByPair<T, V>>> reducerList = new ArrayList<>();
+    int m = 3;  // number of mappaer
+    int r = 4;  // number of reducer
 
     static Boolean isWord(String str) {
         if (Pattern.matches("[A-Za-z]+", str) || Pattern.matches("[A-Za-z]+\\.", str)
-                || Pattern.matches("[A-Za-z]+,", str) || Pattern.matches("\"[A-Za-z]+\"", str)) {
+                || Pattern.matches("[A-Za-z]+,", str) || Pattern.matches("\"[A-Za-z]+", str)
+                || Pattern.matches("[A-Za-z]+\"", str) || Pattern.matches("\'[A-Za-z]+", str)
+                || Pattern.matches("[A-Za-z]+\'", str)) {
             return true;
         } else {
             return false;
@@ -56,6 +58,7 @@ class WordCount<T, V> {
                             str = str.replaceAll(",", "");
                             str = str.replaceAll("\\.", "");
                             str = str.replaceAll("\"", "");
+                            str = str.replaceAll("\'", "");
                             Pair<String, Long> pair = new Pair<String, Long>(str.toLowerCase(), 1L);
                             pairList.add(pair);
                         }
