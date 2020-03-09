@@ -7,13 +7,14 @@ import org.springframework.stereotype.Service;
 
 import shop.domain.Product;
 import shop.domain.ShoppingCart;
-import shop.repository.ProductRepository;
 import shop.repository.ShoppingCartRepository;
 
 @Service
 public class ShoppingService {
 	@Autowired
 	ProductCatalogService productCatalogService;
+	@Autowired
+	OrderService orderService;
 	@Autowired
 	ShoppingCartRepository shoppingCartRepository;
 
@@ -39,5 +40,10 @@ public class ShoppingService {
 		  return cart.get();
 		else
 			return null;
+	}
+
+	public void checkOut(String cartId) {
+		ShoppingCart shoppingCart = shoppingCartRepository.findById(cartId).get();
+		orderService.createOrder(shoppingCart);
 	}
 }
