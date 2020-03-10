@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import shop.domain.Product;
 import shop.domain.ShoppingCart;
 import shop.service.ShoppingService;
 
@@ -29,5 +28,9 @@ public class ShoppingController {
 		cart.print();
 		return new ResponseEntity<ShoppingCart>(cart, HttpStatus.OK);
 	}
-	
+	@GetMapping("/cart/checkout/{cartId}")
+	public ResponseEntity<?> checkoutCart(@PathVariable String cartId) {
+		shoppingService.checkOut(cartId);
+		return new ResponseEntity<ShoppingCart>(HttpStatus.OK);
+	}
 }
