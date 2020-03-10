@@ -28,7 +28,7 @@ public class ShoppingController {
 		cart.print();
 		return new ResponseEntity<ShoppingCart>(cart, HttpStatus.OK);
 	}
-	@GetMapping("/cart/checkout/{cartId}")
+	@PostMapping("/cart/checkout/{cartId}")
 	public ResponseEntity<?> checkoutCart(@PathVariable String cartId) {
 		shoppingService.checkOut(cartId);
 		return new ResponseEntity<ShoppingCart>(HttpStatus.OK);
