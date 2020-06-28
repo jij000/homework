@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>edu.miu.CS525DE.Lab01.c</OriginalElement>
+  <nodes>
+    <node x="1040.756149097816" y="549.0">edu.miu.CS525DE.Lab01.c.DAO.BookDAO</node>
+    <node x="899.4991809116812" y="158.0">edu.miu.CS525DE.Lab01.c.Domain.Address</node>
+    <node x="550.756149097816" y="549.0">edu.miu.CS525DE.Lab01.c.DAO.OrderDAO</node>
+    <node x="541.318649097816" y="180.0">edu.miu.CS525DE.Lab01.c.Domain.BookItem</node>
+    <node x="833.756149097816" y="538.0">edu.miu.CS525DE.Lab01.c.DAO.ShoppingCartDAO</node>
+    <node x="575.631149097816" y="390.0">edu.miu.CS525DE.Lab01.c.Domain.Order</node>
+    <node x="461.81803181386533" y="714.0">edu.miu.CS525DE.Lab01.c.Service.OrderService</node>
+    <node x="22.756149097815978" y="401.0">edu.miu.CS525DE.Lab01.c.DAO.UserInfoDAO</node>
+    <node x="541.818649097816" y="0.0">edu.miu.CS525DE.Lab01.c.Domain.Book</node>
+    <node x="323.756149097816" y="401.0">edu.miu.CS525DE.Lab01.c.Domain.ShoppingCart</node>
+    <node x="166.50614909781598" y="126.0">edu.miu.CS525DE.Lab01.c.Domain.UserInfo</node>
+  </nodes>
+  <notes />
+  <edges />
+  <settings layout="Hierarchic Group" zoom="1.0" x="624.5" y="428.0" />
+  <SelectedNodes>
+    <node>edu.miu.CS525DE.Lab01.c.DAO.UserInfoDAO</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

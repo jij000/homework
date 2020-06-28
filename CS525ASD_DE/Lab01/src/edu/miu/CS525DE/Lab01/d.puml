@@ -1,0 +1,28 @@
+@startuml
+autonumber
+
+actor Client
+
+Client -> OrderService : addItem()
+activate OrderService
+OrderService -> ShoppingCart : getShoppingCart(String id)
+activate ShoppingCart
+OrderService -> BookItem : <<create>>
+activate BookItem
+OrderService -> ShoppingCartDAO : addItem(BookItem bookItem)
+activate ShoppingCartDAO
+ShoppingCartDAO -> DB : save
+activate DB
+DB -> ShoppingCartDAO : return
+deactivate DB
+ShoppingCartDAO -> OrderService : return
+deactivate ShoppingCartDAO
+BookItem -> OrderService : <<destroy>>
+destroy BookItem
+'ShoppingCart -> OrderService : return
+deactivate ShoppingCart
+OrderService -> Client : return
+deactivate OrderService
+
+
+@enduml
