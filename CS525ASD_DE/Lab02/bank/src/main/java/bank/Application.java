@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import bank.domain.Account;
 import bank.domain.AccountEntry;
+import bank.domain.AccountType;
 import bank.domain.Customer;
 import bank.service.AccountService;
 import bank.service.IAccountService;
@@ -14,8 +15,8 @@ public class Application {
 	public static void main(String[] args) {
 		IAccountService accountService = new AccountService();
 		// create 2 accounts;
-		accountService.createAccount(1263862, "Frank Brown");
-		accountService.createAccount(4253892, "John Doe");
+		accountService.createAccount(1263862, "Frank Brown", AccountType.SAVING);
+		accountService.createAccount(4253892, "John Doe", AccountType.CHECKING);
 		//use account 1;
 		accountService.deposit(1263862, 240);
 		accountService.deposit(1263862, 529);
@@ -23,6 +24,8 @@ public class Application {
 		//use account 2;
 		accountService.deposit(4253892, 12450);
 		accountService.transferFunds(4253892, 1263862, 100, "payment of invoice 10232");
+		accountService.addInterest(1263862);
+		accountService.addInterest(4253892);
 		// show balances
 		
 		Collection<Account> accountlist = accountService.getAllAccounts();

@@ -2,21 +2,28 @@ package bank.domain;
 
 import java.util.*;
 
-
 public class Account {
 	long accountnumber;
 	Collection<AccountEntry> entryList = new ArrayList<AccountEntry>();
 	Customer customer;
-
+	AccountType accountType;
+	InterestStrategy interestStrategy;
 	
 	public Account (long accountnr){
 		this.accountnumber = accountnr;
+	}
+	public Account (long accountnr, AccountType accountType){
+		this.accountnumber = accountnr;
+		this.accountType = accountType;
 	}
 	public long getAccountnumber() {
 		return accountnumber;
 	}
 	public void setAccountnumber(long accountnumber) {
 		this.accountnumber = accountnumber;
+	}
+	public void setAccountType(AccountType accountType) {
+		this.accountType = accountType;
 	}
 	public double getBalance() {
 		double balance=0;
@@ -56,4 +63,19 @@ public class Account {
 		return entryList;
 	}
 
+	public void addInterest() {
+		switch (accountType) {
+			case CHECKING:
+				interestStrategy = new InterestStrategyChecking();
+				break;
+			case SAVING:
+				interestStrategy = new InterestStrategySaving();
+				break;
+			default:
+				break;
+		}
+		double amount = interestStrategy.calculateInterest(getBalance());
+		AccountEntry entry = new AccountEntry(new Date(), amount, "interest", "", "");
+		entryList.add(entry);
+	}
 }

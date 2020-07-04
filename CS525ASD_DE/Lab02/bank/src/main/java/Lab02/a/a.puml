@@ -1,0 +1,25 @@
+@startuml
+autonumber
+
+Application -> DrawingCanvas : <<create>>
+activate DrawingCanvas
+Application -> DrawStrategyLine : <<create>>
+activate DrawStrategyLine
+Application -> DrawingCanvas : setDrawStrategy(DrawStrategy drawStrategy)
+Application -> DrawingCanvas : draw()
+DrawingCanvas -> DrawStrategyLine : draw()
+deactivate DrawStrategyLine
+deactivate DrawingCanvas
+Application -> DrawingCanvas : <<create>>
+activate DrawingCanvas
+Application -> DrawStrategyCircle : <<create>>
+activate DrawStrategyCircle
+Application -> DrawingCanvas : setDrawStrategy(DrawStrategy drawStrategy)
+Application -> DrawingCanvas : draw()
+DrawingCanvas -> DrawStrategyCircle : draw()
+Application -> DrawingCanvas : draw()
+DrawingCanvas -> DrawStrategyCircle : draw()
+deactivate DrawStrategyCircle
+deactivate DrawingCanvas
+
+@enduml

@@ -1,0 +1,19 @@
+@startuml
+autonumber
+
+Application -> AccountService : addInterest(long accountNumber)
+activate AccountService
+AccountService -> AccountDAO : <<create>>
+activate AccountDAO
+AccountService -> AccountDAO : loadAccount(long accountNumber)
+AccountService -> Account : addInterest()
+activate Account
+Account -> InterestStrategy : <<create>>
+Account -> InterestStrategy : calculateInterest()
+deactivate InterestStrategy
+deactivate Account
+AccountService -> AccountDAO : updateAccount(Account account)
+deactivate AccountDAO
+deactivate AccountService
+
+@enduml

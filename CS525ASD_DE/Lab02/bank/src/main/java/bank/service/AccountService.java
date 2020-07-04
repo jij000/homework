@@ -5,6 +5,7 @@ import java.util.Collection;
 import bank.dao.AccountDAO;
 import bank.dao.IAccountDAO;
 import bank.domain.Account;
+import bank.domain.AccountType;
 import bank.domain.Customer;
 
 
@@ -16,8 +17,8 @@ public class AccountService implements IAccountService {
 		accountDAO=new AccountDAO();
 	}
 
-	public Account createAccount(long accountNumber, String customerName) {
-		Account account = new Account(accountNumber);
+	public Account createAccount(long accountNumber, String customerName, AccountType accountType) {
+		Account account = new Account(accountNumber, accountType);
 		Customer customer = new Customer(customerName);
 		account.setCustomer(customer);
 		accountDAO.saveAccount(account);
@@ -53,5 +54,10 @@ public class AccountService implements IAccountService {
 		fromAccount.transferFunds(toAccount, amount, description);
 		accountDAO.updateAccount(fromAccount);
 		accountDAO.updateAccount(toAccount);
+	}
+
+	public void addInterest(long accountNumber) {
+		Account account = accountDAO.loadAccount(accountNumber);
+		account.addInterest();
 	}
 }
