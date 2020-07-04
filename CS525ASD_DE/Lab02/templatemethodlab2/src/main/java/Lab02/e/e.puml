@@ -1,0 +1,20 @@
+@startuml
+autonumber
+
+Application -> VisaCardPaymentProcessor : <<create>>
+activate VisaCardPaymentProcessor
+Application -> VisaCardPaymentProcessor : processPayment(double amount, String currency, Customer customer)
+VisaCardPaymentProcessor -> VisaCardPaymentProcessor : validate()
+activate VisaCardPaymentProcessor
+deactivate VisaCardPaymentProcessor
+deactivate VisaCardPaymentProcessor
+
+Application -> PaypalPaymentProcessor : <<create>>
+activate PaypalPaymentProcessor
+Application -> PaypalPaymentProcessor : processPayment(double amount, String currency, Customer customer)
+PaypalPaymentProcessor -> PaypalPaymentProcessor : validate()
+activate PaypalPaymentProcessor
+deactivate PaypalPaymentProcessor
+deactivate PaypalPaymentProcessor
+
+@enduml
