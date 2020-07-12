@@ -28,9 +28,11 @@ public class JFrameCounter extends JFrame {
             rectframe.setVisible(true);
             OvalFrame ovalframe = new OvalFrame();
             ovalframe.setVisible(true);
-            counter.setTextframe(textframe);
-            counter.setRectframe(rectframe);
-            counter.setOvalframe(ovalframe);
+            CounterObserver counterObserver = new CounterObserver();
+            counterObserver.setTextFrame(textframe);
+            counterObserver.setRectFrame(rectframe);
+            counterObserver.setOvalFrame(ovalframe);
+            counter.addObserver(counterObserver);
         } catch (Exception e) {
             e.printStackTrace();
         }
