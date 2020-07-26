@@ -11,7 +11,10 @@ import bank.domain.Customer;
 public class AccountService implements IAccountService {
 	private IAccountDAO accountDAO;
 
-	
+	public void setAccountDAO(IAccountDAO accountDAO) {
+		this.accountDAO = accountDAO;
+	}
+
 	public AccountService(){
 		accountDAO=new AccountDAO();
 	}
@@ -24,11 +27,11 @@ public class AccountService implements IAccountService {
 		return account;
 	}
 
-	public void deposit(long accountNumber, double amount) {
-		Account account = accountDAO.loadAccount(accountNumber);
-		account.deposit(amount);
-		accountDAO.updateAccount(account);
+	public IAccountDAO getAccountDAO() {
+		return accountDAO;
 	}
+//	public void deposit(long accountNumber, double amount) {
+//	}
 
 	public Account getAccount(long accountNumber) {
 		Account account = accountDAO.loadAccount(accountNumber);
@@ -39,19 +42,9 @@ public class AccountService implements IAccountService {
 		return accountDAO.getAccounts();
 	}
 
-	public void withdraw(long accountNumber, double amount) {
-		Account account = accountDAO.loadAccount(accountNumber);
-		account.withdraw(amount);
-		accountDAO.updateAccount(account);
-	}
-
-
-
-	public void transferFunds(long fromAccountNumber, long toAccountNumber, double amount, String description) {
-		Account fromAccount = accountDAO.loadAccount(fromAccountNumber);
-		Account toAccount = accountDAO.loadAccount(toAccountNumber);
-		fromAccount.transferFunds(toAccount, amount, description);
-		accountDAO.updateAccount(fromAccount);
-		accountDAO.updateAccount(toAccount);
-	}
+//	public void withdraw(long accountNumber, double amount) {
+//	}
+//
+//	public void transferFunds(long fromAccountNumber, long toAccountNumber, double amount, String description) {
+//	}
 }

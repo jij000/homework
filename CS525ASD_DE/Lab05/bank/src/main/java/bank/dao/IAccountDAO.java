@@ -8,4 +8,6 @@ public interface IAccountDAO {
 	void updateAccount(Account account);
 	Account loadAccount(long accountnumber);
 	Collection<Account> getAccounts();
+	Collection<Account> getAccountlist();
+	void setAccountlist(Collection<Account> accountlist);
 }

@@ -6,6 +6,14 @@ import bank.domain.Account;
 public class AccountDAO implements IAccountDAO {
 	Collection<Account> accountlist = new ArrayList<Account>();
 
+	public Collection<Account> getAccountlist() {
+		return accountlist;
+	}
+
+	public void setAccountlist(Collection<Account> accountlist) {
+		this.accountlist = accountlist;
+	}
+
 	public void saveAccount(Account account) {
 		accountlist.add(account); // add the new
 	}
