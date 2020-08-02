@@ -2,6 +2,8 @@ package counter;
 import counter.command.DecrementCommand;
 import counter.command.HistoryList;
 import counter.command.IncrementCommand;
+import counter.status.Step1;
+import counter.status.StepStatus;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -38,6 +40,8 @@ public class JFrameCounter extends JFrame {
             counterObserver.setRectFrame(rectframe);
             counterObserver.setOvalFrame(ovalframe);
             counter.addObserver(counterObserver);
+            StepStatus stepStatus = new Step1(counter);
+            counter.setStepStatus(stepStatus);
         } catch (Exception e) {
             e.printStackTrace();
         }
