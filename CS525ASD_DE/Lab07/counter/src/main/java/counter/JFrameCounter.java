@@ -1,4 +1,5 @@
 package counter;
+import counter.chainhandler.*;
 import counter.command.DecrementCommand;
 import counter.command.HistoryList;
 import counter.command.IncrementCommand;
@@ -42,6 +43,16 @@ public class JFrameCounter extends JFrame {
             counter.addObserver(counterObserver);
             StepStatus stepStatus = new Step1(counter);
             counter.setStepStatus(stepStatus);
+
+            CounterHandler counterHandler = new CounterHandler();
+            RedHandler redHandler = new RedHandler(null);
+            BlueHandler blueHandler = new BlueHandler(redHandler);
+            GreenHandler greenHandler = new GreenHandler(blueHandler);
+            OrangeHandler orangeHandler = new OrangeHandler(greenHandler);
+            DBHandler dbHandler = new DBHandler(orangeHandler);
+            LogHandler logHandler = new LogHandler(dbHandler);
+            counterHandler.setChainOfHandlers(logHandler);
+            counter.setCounterHandler(counterHandler);
         } catch (Exception e) {
             e.printStackTrace();
         }
