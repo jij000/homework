@@ -1,19 +1,34 @@
 package bank.service;
 
+import java.lang.reflect.Proxy;
 import java.util.Collection;
 
+import bank.adapter.AccountAdapter;
+import bank.adapter.AccountAdapterImpl;
+import bank.adapter.AccountDTO;
 import bank.dao.AccountDAO;
 import bank.dao.IAccountDAO;
 import bank.domain.Account;
 import bank.domain.Customer;
+import bank.proxy.LoggingProxy;
+import bank.proxy.TimingProxy;
 
 
 public class AccountService implements IAccountService {
 	private IAccountDAO accountDAO;
-
+	private AccountAdapter accountAdapter = new AccountAdapterImpl();
 	
 	public AccountService(){
-		accountDAO=new AccountDAO();
+		IAccountDAO accountDAOImpl = new AccountDAO();
+		ClassLoader classLoader = AccountDAO.class.getClassLoader();
+		IAccountDAO loggingProxy =
+			(IAccountDAO) Proxy.newProxyInstance(classLoader,
+				new Class[] { IAccountDAO.class },
+				new LoggingProxy(accountDAOImpl));
+		accountDAO =
+			(IAccountDAO) Proxy.newProxyInstance(classLoader,
+				new Class[] { IAccountDAO.class },
+				new TimingProxy(loggingProxy));
 	}
 
 	public Account createAccount(long accountNumber, String customerName) {
@@ -30,9 +45,12 @@ public class AccountService implements IAccountService {
 		accountDAO.updateAccount(account);
 	}
 
-	public Account getAccount(long accountNumber) {
-		Account account = accountDAO.loadAccount(accountNumber);
-		return account;
+	public AccountDTO getAccount(long accountNumber) {
+		return accountAdapter.getAccount(accountNumber);
+	}
+
+	public Collection<AccountDTO> getAccounts() {
+		return accountAdapter.getAccounts();
 	}
 
 	public Collection<Account> getAllAccounts() {
