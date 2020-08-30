@@ -2,18 +2,25 @@ package bank.service;
 
 import java.util.Collection;
 
-import bank.dao.AccountDAO;
+import bank.dao.AccountDAOImpl;
+import bank.dao.EmailSenderDAO;
 import bank.dao.IAccountDAO;
 import bank.domain.Account;
 import bank.domain.Customer;
+import bank.factory.DaoFactory;
+import bank.factory.MyFactory;
 
 
 public class AccountService implements IAccountService {
 	private IAccountDAO accountDAO;
+	private EmailSenderDAO emailSenderDAO;
 
 	
 	public AccountService(){
-		accountDAO=new AccountDAO();
+		DaoFactory mainfactory = new DaoFactory();
+		MyFactory factory = mainfactory.getFactoryInstance();
+		accountDAO = factory.getAccountDAO();
+		emailSenderDAO = factory.getEmailSenderDAO();
 	}
 
 	public Account createAccount(long accountNumber, String customerName) {
@@ -21,6 +28,7 @@ public class AccountService implements IAccountService {
 		Customer customer = new Customer(customerName);
 		account.setCustomer(customer);
 		accountDAO.saveAccount(account);
+		emailSenderDAO.sendEmail(account.getCustomer());
 		return account;
 	}
 
@@ -28,6 +36,7 @@ public class AccountService implements IAccountService {
 		Account account = accountDAO.loadAccount(accountNumber);
 		account.deposit(amount);
 		accountDAO.updateAccount(account);
+		emailSenderDAO.sendEmail(account.getCustomer());
 	}
 
 	public Account getAccount(long accountNumber) {
@@ -43,6 +52,7 @@ public class AccountService implements IAccountService {
 		Account account = accountDAO.loadAccount(accountNumber);
 		account.withdraw(amount);
 		accountDAO.updateAccount(account);
+		emailSenderDAO.sendEmail(account.getCustomer());
 	}
 
 
@@ -53,5 +63,7 @@ public class AccountService implements IAccountService {
 		fromAccount.transferFunds(toAccount, amount, description);
 		accountDAO.updateAccount(fromAccount);
 		accountDAO.updateAccount(toAccount);
+		emailSenderDAO.sendEmail(fromAccount.getCustomer());
+		emailSenderDAO.sendEmail(toAccount.getCustomer());
 	}
 }

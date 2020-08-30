@@ -1,9 +1,11 @@
 package bank.dao;
 
-import java.util.*;
 import bank.domain.Account;
 
-public class AccountDAO implements IAccountDAO {
+import java.util.ArrayList;
+import java.util.Collection;
+
+public class MockAccountDAOImpl implements IAccountDAO {
 	Collection<Account> accountlist = new ArrayList<Account>();
 
 	public void saveAccount(Account account) {
