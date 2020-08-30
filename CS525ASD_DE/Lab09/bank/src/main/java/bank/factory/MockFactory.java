@@ -1,13 +1,10 @@
 package bank.factory;
 
-import bank.dao.EmailSenderDAO;
-import bank.dao.IAccountDAO;
-import bank.dao.MockAccountDAOImpl;
-import bank.dao.MockEmailSenderDAOImpl;
+import bank.dao.*;
 
 public class MockFactory implements MyFactory{
     public IAccountDAO getAccountDAO() {
-        return new MockAccountDAOImpl();
+        return new MockAccountDAOLoggerImpl();
     }
     public EmailSenderDAO getEmailSenderDAO() {
         return MockEmailSenderDAOImpl.getEmailSender();
