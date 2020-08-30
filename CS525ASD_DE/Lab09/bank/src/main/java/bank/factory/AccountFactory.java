@@ -7,6 +7,6 @@ public class AccountFactory implements MyFactory{
         return new AccountDAOImpl();
     }
     public EmailSenderDAO getEmailSenderDAO() {
-        return new EmailSenderDAOImpl();
+        return EmailSenderDAOImpl.getEmailSender();
     }
 }

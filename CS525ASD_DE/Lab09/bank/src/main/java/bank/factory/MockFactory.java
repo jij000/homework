@@ -10,6 +10,6 @@ public class MockFactory implements MyFactory{
         return new MockAccountDAOImpl();
     }
     public EmailSenderDAO getEmailSenderDAO() {
-        return new MockEmailSenderDAOImpl();
+        return MockEmailSenderDAOImpl.getEmailSender();
     }
 }
