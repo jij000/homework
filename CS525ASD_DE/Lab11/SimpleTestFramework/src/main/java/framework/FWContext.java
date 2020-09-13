@@ -30,9 +30,17 @@ public class FWContext {
 	public void start() {
 		try {
 			for (Object theTestClass : objectMap) {
+				// find the only one method annotated with the @Before  annotation
+				Method methodBefore = null;
+				for (Method method : theTestClass.getClass().getDeclaredMethods()) {
+					if (method.isAnnotationPresent(Before.class)) {
+						methodBefore = method;
+					}
+				}
 				// find all methods annotated with the @Test annotation
 				for (Method method : theTestClass.getClass().getDeclaredMethods()) {
 					if (method.isAnnotationPresent(Test.class)) {
+						methodBefore.invoke(theTestClass);
 						method.invoke(theTestClass);
 					}
 				}
