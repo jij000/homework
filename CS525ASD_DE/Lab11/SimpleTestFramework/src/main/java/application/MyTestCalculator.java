@@ -1,6 +1,7 @@
 package application;
 
 import framework.Before;
+import framework.Inject;
 import framework.Test;
 import framework.TestClass;
 
@@ -8,12 +9,13 @@ import static framework.Asserts.assertEquals;
 
 @TestClass
 public class MyTestCalculator {
-    Calculator calculator;
+    @Inject
+    CalculatorImpl calculator;
 
-    @Before
-    public void init() {
-        calculator = new CalculatorImpl();
-    }
+//    @Before
+//    public void init() {
+//        calculator = new CalculatorImpl();
+//    }
 
     @Test
     public void testMethod1() {

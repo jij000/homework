@@ -1,5 +1,7 @@
 package application;
 
+import framework.Service;
+
 public interface Calculator {
     public void reset();
 
