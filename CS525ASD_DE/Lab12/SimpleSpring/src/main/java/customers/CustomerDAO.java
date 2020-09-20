@@ -1,7 +1,7 @@
 package customers;
 
 public class CustomerDAO implements ICustomerDAO{
-	private ILogger logger = new Logger();
+	private ILogger logger;
 	
 	public void save(Customer customer) {
 		// simple sleep
@@ -14,4 +14,7 @@ public class CustomerDAO implements ICustomerDAO{
 		logger.log("Customer is saved in the DB: "+ customer.getName() );
 	}
 
+	public CustomerDAO(ILogger logger) {
+		this.logger = logger;
+	}
 }
