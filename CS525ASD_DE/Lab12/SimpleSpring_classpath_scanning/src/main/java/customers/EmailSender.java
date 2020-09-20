@@ -1,5 +1,8 @@
 package customers;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class EmailSender implements IEmailSender {
 	String outgoingMailServer = "smtp.acme.com";
 	private ILogger logger = new Logger();
