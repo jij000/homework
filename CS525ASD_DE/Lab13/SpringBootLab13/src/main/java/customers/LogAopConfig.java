@@ -14,7 +14,8 @@ public class LogAopConfig {
 
     @After("execution(* customers.EmailSender.sendEmail(..)) && args(address, message)")
     public void logAfterMethod(JoinPoint joinpoint, String address, String message) {
+        EmailSender emailSender = (EmailSender)joinpoint.getTarget();
         logger.log("method="+joinpoint.getSignature().getName() + " address=" + address
-            + " message=" + message);
+            + " message=" + message + " outgoing mail server " + emailSender.getOutgoingMailServer());
     }
 }
