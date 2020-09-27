@@ -12,8 +12,9 @@ public class LogAopConfig {
     @Autowired
     Logger logger;
 
-    @After("execution(* customers.EmailSender.sendEmail(..))")
-    public void logAfterMethod(JoinPoint joinpoint) {
-        logger.log("method="+joinpoint.getSignature().getName());
+    @After("execution(* customers.EmailSender.sendEmail(..)) && args(address, message)")
+    public void logAfterMethod(JoinPoint joinpoint, String address, String message) {
+        logger.log("method="+joinpoint.getSignature().getName() + " address=" + address
+            + " message=" + message);
     }
 }
